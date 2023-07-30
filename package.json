@@ -1,7 +1,7 @@
 {
   "name": "tabela-periodica-2",
   "version": "1.0.0",
-  "homepage": "https://CiciinhoCC.github.io/tabela-periodica-2",
+  "homepage": "https://ciciinhocc.github.io/tabela-periodica-2/",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "predeploy": "npm run build",
@@ -18,7 +18,8 @@
     "react": "18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "0.72.3",
-    "react-native-web": "~0.19.6"
+    "react-native-web": "~0.19.6",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
