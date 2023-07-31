@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import data from "./tabela.json"
 let elementos = []
 let tabela = [[],[],[],[],[],[],[],[],[]]
@@ -16,6 +16,7 @@ data.map(item => {
     tipo: item.groupBlock,
     corCpk: item.cpkHexColor,
     ano: item.yearDiscovered === "Ancient"? "Antigo" : item.yearDiscovered,
+    densidade: item.density == ""? "***" : item.density,
     marginTop: 5
   })
 })
@@ -109,13 +110,14 @@ export default class App extends Component {
               
             </View>
             <View style={styles.infoInfo}>
-              <Text style={styles.infoText}>Número Atômico: {this.state.item.num}</Text>
-              <Text style={styles.infoText}>Massa Atômica: {typeof this.state.item.massa === "string"? this.state.item.massa : `(${this.state.item.massa})` }</Text>
-              <Text style={styles.infoText}>Tipo: {this.state.item.tipo}</Text>
-              <Text style={styles.infoText}>Ano Descoberto: {this.state.item.ano}</Text>
-              <Text style={styles.infoText}>Estado: {this.state.item.estado}</Text>
-              <Text style={styles.infoText}>Ponto de Fusão: {this.state.item.fusao} K</Text>
-              <Text style={styles.infoText}>Ponto de Ebulição: {this.state.item.ebul} K</Text>
+              <Text style={styles.infoText}><Text style={styles.bold}>Número Atômico:</Text> {this.state.item.num}</Text>
+              <Text style={styles.infoText}><Text style={styles.bold}>Massa Atômica:</Text> {typeof this.state.item.massa === "string"? this.state.item.massa : `(${this.state.item.massa})` }</Text>
+              <Text style={styles.infoText}><Text style={styles.bold}>Tipo:</Text> {this.state.item.tipo}</Text>
+              <Text style={styles.infoText}><Text style={styles.bold}>Ano Descoberto:</Text> {this.state.item.ano}</Text>
+              <Text style={styles.infoText}><Text style={styles.bold}>Estado:</Text> {this.state.item.estado}</Text>
+              <Text style={styles.infoText}><Text style={styles.bold}>Ponto de Fusão:</Text> {this.state.item.fusao} K</Text>
+              <Text style={styles.infoText}><Text style={styles.bold}>Ponto de Ebulição:</Text> {this.state.item.ebul} K</Text>
+              <Text style={styles.infoText}><Text style={styles.bold}>Densidade:</Text> {this.state.item.densidade} g/cm³</Text>
 
               <View style={[styles.cpkBall, {backgroundColor: "#" + this.state.item.corCpk}]}/>
             </View>
@@ -207,11 +209,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     margin: 20,
     width: 500,
-    height: 150,
     borderRadius: 10,
     position: 'absolute',
     marginRight: 250,
-    marginBottom: 350,
+    marginBottom: 365,
     flexDirection: 'row'
   },
   elementSymbolBig: {
@@ -244,7 +245,8 @@ const styles = StyleSheet.create({
   },
   infoInfo:{
     flex: 0.7,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    margin: 5
   },
   elementNameBig:{
     fontSize: 24,
@@ -267,5 +269,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     position: 'absolute',
     borderWidth: 1
+  },
+  bold: {
+    fontWeight: 'bold'
   }
 });
